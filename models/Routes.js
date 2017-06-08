@@ -4,6 +4,7 @@ const
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     name: String,
     rating: String,
+    stars: Number,
     coordinates: Array,
     img: String
   })
