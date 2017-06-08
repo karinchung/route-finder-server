@@ -1,12 +1,14 @@
 const
-  Route = require('../models/Routes.js')
+  Route = require('../models/Routes.js'),
+  geocoder = require('geocoder')
 
 module.exports = {
   index,
   show,
   create,
   update,
-  destroy
+  destroy,
+  getGeocode
 }
 
 function index(req, res) {
@@ -41,5 +43,11 @@ function destroy(req, res) {
   Route.findByIdAndRemove(req.params.id, (err, route) => {
     if(err) return console.log(err)
     res.json({success: true, message: "Route deleted"})
+  })
+}
+
+function getGeocode(req, res) {
+  geocoder.geocode(req.query.searchValue, (err, data) => {
+    res.json(data.results[0].geometry.location)
   })
 }

@@ -8,6 +8,9 @@ const
 routesRouter.route('/')
   .get(routesCtrl.index)
 
+routesRouter.route('/local')
+  .get(routesCtrl.getGeocode)
+
 routesRouter.use(authorize)
 
 routesRouter.route('/')
