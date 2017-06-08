@@ -1,13 +1,13 @@
 const
   express = require('express'),
   app = express(),
+  dotenv = require('dotenv').load({silent: true}),
   logger = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   usersRoutes = require('./routes/users.js'),
   routesRoutes = require('./routes/routes.js'),
   cors = require('cors'),
-  // change to url to the heroku one after deployment
   mongoURL = process.env.MONGO_URL || 'mongodb://localhost/route-finder',
   port = process.env.PORT || 3001
 
