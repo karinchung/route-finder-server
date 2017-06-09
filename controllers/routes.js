@@ -64,6 +64,7 @@ function favorite(req, res) {
   User.findById(req.decoded._id, (err, user) => {
     user.favorites.push(req.body.favoriteId)
     user.save()
+    res.json({success: true, message: "route favorited", user: user})
   })
 
 }
