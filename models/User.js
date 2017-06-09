@@ -5,7 +5,7 @@ const
     name: String,
     email: String,
     password: {type: String, select: false},
-    routes: Array
+    favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Route'}]
   })
 
   userSchema.methods.generateHash = function(password){

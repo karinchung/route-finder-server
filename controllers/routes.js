@@ -1,6 +1,9 @@
 const
   Route = require('../models/Routes.js'),
-  geocoder = require('geocoder')
+  geocoder = require('geocoder'),
+  User = require('../models/User.js')
+  // serverAuth = require('../config/serverAuth.js')
+
 
 module.exports = {
   index,
@@ -8,7 +11,9 @@ module.exports = {
   create,
   update,
   destroy,
-  getGeocode
+  getGeocode,
+  favorite,
+  deleteFavorite
 }
 
 function index(req, res) {
@@ -24,7 +29,9 @@ function show(req, res) {
 }
 
 function create(req, res) {
-  Route.create(req.body, (err, route) => {
+  const newRoute = new Route(req.body)
+  newRoute.user = req.decoded
+  newRoute.save((err, route) => {
     res.json({success: true, message: "Route created", route})
   })
 }
@@ -50,4 +57,17 @@ function getGeocode(req, res) {
   geocoder.geocode(req.query.searchValue, (err, data) => {
     res.json(data.results[0].geometry.location)
   })
+}
+
+function favorite(req, res) {
+  console.log('body: ', req.body.favoriteId)
+  User.findById(req.decoded._id, (err, user) => {
+    user.favorites.push(req.body.favoriteId)
+    user.save()
+  })
+
+}
+
+function deleteFavorite() {
+  console.log('deleted')
 }
