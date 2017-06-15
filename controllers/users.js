@@ -7,7 +7,8 @@ module.exports = {
   show,
   create,
   update,
-  destroy
+  destroy,
+  showRoute
 }
 
 function index(req, res) {
@@ -47,4 +48,13 @@ function destroy(req, res) {
     if(err) return console.log(err)
     res.json({success: true, message: "User deleted..."})
   })
+}
+
+function showRoute(req, res) {
+  User.findById(req.params.id, (err, user) => {
+    if (err) return console.log(err)
+
+  })
+
+// end module
 }

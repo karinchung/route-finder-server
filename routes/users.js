@@ -32,4 +32,7 @@ usersRouter.route('/:id')
   .patch(usersCtrl.update)
   .delete(usersCtrl.destroy)
 
+usersRouter.route('/:id/favorites/:id')
+  .get(usersCtrl.showRoute)
+
 module.exports = usersRouter
