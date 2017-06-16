@@ -8,11 +8,12 @@ const
   usersRoutes = require('./routes/users.js'),
   routesRoutes = require('./routes/routes.js'),
   cors = require('cors'),
-  mongoURL = process.env.MONGO_URL || 'mongodb://localhost/route-finder',
-  PORT = process.env.PORT || 3001
+  mongoURL = process.env.MONGO_URL
+  //  || 'mongodb://localhost/route-finder',
+  PORT = process.env.PORT
+  // || 3001
 
 mongoose.connect(mongoURL, (err) => {
-  console.log('connecting to mongodb')
   console.log(`this is the err: ${err}` || 'Connected to Mongodb')
 })
 
