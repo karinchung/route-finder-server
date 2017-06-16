@@ -9,10 +9,11 @@ const
   routesRoutes = require('./routes/routes.js'),
   cors = require('cors'),
   mongoURL = process.env.MONGO_URL || 'mongodb://localhost/route-finder',
-  port = process.env.PORT || 3001
+  PORT = process.env.PORT || 3001
 
 mongoose.connect(mongoURL, (err) => {
-  console.log(err || 'Connected to Mongodb')
+  console.log('connecting to mongodb')
+  console.log(`this is the err: ${err}` || 'Connected to Mongodb')
 })
 
 // log incoming requests to console
@@ -32,6 +33,6 @@ app.get('/', (req, res) => {
 app.use('/users', usersRoutes)
 app.use('/routes', routesRoutes)
 
-app.listen(port, (err) => {
-  console.log(err || `Server running on port ${port}`)
+app.listen(PORT, (err) => {
+  console.log(err || `Server running on port ${PORT}`)
 })

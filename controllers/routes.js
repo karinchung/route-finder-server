@@ -29,6 +29,7 @@ function show(req, res) {
 }
 
 function create(req, res) {
+  console.log('route  being added from the controller:')
   const newRoute = new Route(req.body)
   newRoute.user = req.decoded
   newRoute.save((err, route) => {
@@ -54,7 +55,9 @@ function destroy(req, res) {
 }
 
 function getGeocode(req, res) {
+  console.log('getting Geocode')
   geocoder.geocode(req.query.searchValue, (err, data) => {
+    console.log(req)
     res.json(data.results[0].geometry.location)
   })
 }
